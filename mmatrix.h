@@ -14,7 +14,8 @@ public:
 	// set all matrix entries equal to a double
 	MMatrix &operator=(double x)
 	{
-		for (unsigned i = 0; i < nRows * nCols; i++) A[i] = x;
+		for (unsigned i = 0; i < nRows * nCols; i++)
+			A[i] = x;
 		return *this;
 	}
 

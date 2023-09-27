@@ -17,10 +17,6 @@ std::random_device rand_dev;
 
 // Set up a pseudo-random number generater "rnd", seeded with a random number
 std::mt19937 rnd(rand_dev());
-
-// Alternative: set up the generator with an arbitrary constant integer. This can be useful for
-// debugging because the program produces the same sequence of random numbers each time it runs.
-// To get this behaviour, uncomment the line below and comment the declaration of "rnd" above.
 // std::mt19937 rnd(12345);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -350,8 +346,7 @@ public:
 		return activations[nLayers - 1];
 	}
 
-	// Implement the training algorithm outlined in section 1.3.3
-	// This should be implemented by calling the appropriate private member functions, below
+	// Implement the training algorithm
 	bool Train(const std::vector<MVector> x, const std::vector<MVector> y,
 			   double initsd, double learningRate, double costThreshold, int maxIterations, double a)
 	{
@@ -431,8 +426,7 @@ public:
 					return true;
 				}
 			}
-
-		} // Go back to step 3, until we have taken "maxIterations" steps
+		}
 
 		// Return "false", indicating that the training did not succeed.
 		return false;
@@ -536,7 +530,7 @@ private:
 		// Check that the input vector has the same number of elements as the input layer
 		assert(x.size() == nneurons[0]);
 
-		// Implement the feed-forward algorithm, equations (1.7), (1.8)
+		// Implement the feed-forward algorithm
 		activations[0] = x;
 
 		for (int i = 1; i < activations.size(); i++)
@@ -619,7 +613,7 @@ private:
 		assert(eta > 0);
 
 		// Update the weights and biases according to the stochastic gradient
-		// iteration, using equations (1.25) and (1.26) to evaluate
+		// iteration
 		// the components of grad C. also includes momentum which can be left out with alpha == 0
 
 		for (int i = 1; i < weights.size(); i++)
@@ -787,10 +781,6 @@ bool Network::Test()
 // Main function and example use of the Network class
 
 // Create, train and use a neural network to classify the data in
-// figures 1.1 and 1.2 of the project description.
-//
-// You should make your own copies of this function and change the network parameters
-// to solve the other problems outlined in the project description.
 void ClassifyTestData()
 {
 	// Create a network with two input neurons, two hidden layers of three neurons, and one output neuron
